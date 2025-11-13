@@ -4,9 +4,11 @@ import TodoList from './components/TodoList';
 import ThemeToggle from './components/ThemeToggle';
 import ConfirmDialog from './components/ConfirmDialog';
 import TodoService from './services/todoService';
+import { useCurrentTime } from './hooks/useCurrentTime';
 import './App.css';
 
 function App() {
+  const { currentTime } = useCurrentTime();
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -147,6 +149,7 @@ function App() {
           {!loading && (
             <TodoList
               todos={todos}
+              currentTime={currentTime}
               onToggle={handleToggleTodo}
               onEdit={handleEditTodo}
               onDelete={handleDeleteTodo}

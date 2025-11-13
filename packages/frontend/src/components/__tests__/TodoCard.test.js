@@ -99,4 +99,75 @@ describe('TodoCard Component', () => {
     
     expect(screen.queryByText(/Due:/)).not.toBeInTheDocument();
   });
+
+  describe('Overdue todos', () => {
+    const mockCurrentDate = new Date('2025-11-13T12:00:00.000Z');
+
+    it('should display overdue indicator for incomplete past-due todo', () => {
+      const overdueTodo = {
+        id: 1,
+        title: 'Overdue task',
+        dueDate: '2025-11-10',
+        completed: 0
+      };
+
+      render(<TodoCard todo={overdueTodo} currentTime={mockCurrentDate} {...mockHandlers} isLoading={false} />);
+
+      expect(screen.getByRole('status', { name: /overdue/i })).toBeInTheDocument();
+      expect(screen.getByText('Overdue')).toBeInTheDocument();
+    });
+
+    it('should not display overdue indicator for completed past-due todo', () => {
+      const completedTodo = {
+        id: 1,
+        title: 'Completed overdue task',
+        dueDate: '2025-11-10',
+        completed: 1
+      };
+
+      render(<TodoCard todo={completedTodo} currentTime={mockCurrentDate} {...mockHandlers} isLoading={false} />);
+
+      expect(screen.queryByRole('status', { name: /overdue/i })).not.toBeInTheDocument();
+    });
+
+    it('should not display overdue indicator for future-due todo', () => {
+      const futureTodo = {
+        id: 1,
+        title: 'Future task',
+        dueDate: '2025-11-20',
+        completed: 0
+      };
+
+      render(<TodoCard todo={futureTodo} currentTime={mockCurrentDate} {...mockHandlers} isLoading={false} />);
+
+      expect(screen.queryByRole('status', { name: /overdue/i })).not.toBeInTheDocument();
+    });
+
+    it('should not display overdue indicator for todo without due date', () => {
+      const noDueDateTodo = {
+        id: 1,
+        title: 'No due date task',
+        dueDate: null,
+        completed: 0
+      };
+
+      render(<TodoCard todo={noDueDateTodo} currentTime={mockCurrentDate} {...mockHandlers} isLoading={false} />);
+
+      expect(screen.queryByRole('status', { name: /overdue/i })).not.toBeInTheDocument();
+    });
+
+    it('should apply overdue CSS class', () => {
+      const overdueTodo = {
+        id: 1,
+        title: 'Overdue task',
+        dueDate: '2025-11-10',
+        completed: 0
+      };
+
+      const { container } = render(<TodoCard todo={overdueTodo} currentTime={mockCurrentDate} {...mockHandlers} isLoading={false} />);
+
+      const todoCard = container.querySelector('.todo-card');
+      expect(todoCard).toHaveClass('overdue');
+    });
+  });
 });

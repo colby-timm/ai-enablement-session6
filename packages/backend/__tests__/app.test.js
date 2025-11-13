@@ -254,4 +254,28 @@ describe('Todo API Endpoints', () => {
       expect(deleteResponse.body).toHaveProperty('message');
     });
   });
+
+  describe('GET /api/server-time', () => {
+    it('should return current server time in ISO format', async () => {
+      const response = await request(app).get('/api/server-time');
+
+      expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('serverTime');
+      expect(response.body).toHaveProperty('timestamp');
+      expect(new Date(response.body.serverTime).toISOString()).toBe(response.body.serverTime);
+    });
+
+    it('should not cache the response', async () => {
+      const response = await request(app).get('/api/server-time');
+
+      expect(response.headers['cache-control']).toBe('no-store');
+    });
+
+    it('should return timestamp matching serverTime', async () => {
+      const response = await request(app).get('/api/server-time');
+
+      const serverTimeMs = new Date(response.body.serverTime).getTime();
+      expect(Math.abs(serverTimeMs - response.body.timestamp)).toBeLessThan(10);
+    });
+  });
 });

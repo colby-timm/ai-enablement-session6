@@ -193,4 +193,50 @@ describe('TodoService', () => {
       await expect(TodoService.deleteTodo(999)).rejects.toThrow('Todo not found');
     });
   });
+
+  describe('getServerTime', () => {
+    it('should fetch server time successfully', async () => {
+      const mockServerTime = '2025-11-13T18:30:00.000Z';
+      global.fetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ 
+          serverTime: mockServerTime,
+          timestamp: new Date(mockServerTime).getTime()
+        })
+      });
+
+      const result = await TodoService.getServerTime();
+
+      expect(global.fetch).toHaveBeenCalledWith('/api/server-time');
+      expect(result).toBeInstanceOf(Date);
+      expect(result.toISOString()).toBe(mockServerTime);
+    });
+
+    it('should fallback to client time on error', async () => {
+      global.fetch.mockResolvedValueOnce({
+        ok: false,
+        statusText: 'Internal Server Error'
+      });
+
+      const beforeCall = Date.now();
+      const result = await TodoService.getServerTime();
+      const afterCall = Date.now();
+
+      expect(result).toBeInstanceOf(Date);
+      expect(result.getTime()).toBeGreaterThanOrEqual(beforeCall);
+      expect(result.getTime()).toBeLessThanOrEqual(afterCall);
+    });
+
+    it('should fallback to client time on network error', async () => {
+      global.fetch.mockRejectedValueOnce(new Error('Network error'));
+
+      const beforeCall = Date.now();
+      const result = await TodoService.getServerTime();
+      const afterCall = Date.now();
+
+      expect(result).toBeInstanceOf(Date);
+      expect(result.getTime()).toBeGreaterThanOrEqual(beforeCall);
+      expect(result.getTime()).toBeLessThanOrEqual(afterCall);
+    });
+  });
 });

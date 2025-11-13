@@ -32,14 +32,14 @@ This is a monorepo web application with:
 
 **⚠️ CRITICAL**: These foundational tasks must be complete before any user story implementation
 
-- [ ] T001 Add server time endpoint GET /api/server-time in packages/backend/src/app.js
-- [ ] T002 [P] Write backend tests for server time endpoint in packages/backend/__tests__/app.test.js
-- [ ] T003 [P] Create date utility module with isDateInPast function in packages/frontend/src/utils/dateUtils.js
-- [ ] T004 [P] Write unit tests for date utilities in packages/frontend/src/utils/__tests__/dateUtils.test.js
-- [ ] T005 Add getServerTime method to todo service in packages/frontend/src/services/todoService.js
-- [ ] T006 Write service tests for getServerTime in packages/frontend/src/services/__tests__/todoService.test.js
-- [ ] T007 Create useCurrentTime custom hook with 60-second polling in packages/frontend/src/hooks/useCurrentTime.js
-- [ ] T008 Write hook tests for useCurrentTime in packages/frontend/src/hooks/__tests__/useCurrentTime.test.js
+- [X] T001 Add server time endpoint GET /api/server-time in packages/backend/src/app.js
+- [X] T002 [P] Write backend tests for server time endpoint in packages/backend/__tests__/app.test.js
+- [X] T003 [P] Create date utility module with isDateInPast function in packages/frontend/src/utils/dateUtils.js
+- [X] T004 [P] Write unit tests for date utilities in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [X] T005 Add getServerTime method to todo service in packages/frontend/src/services/todoService.js
+- [X] T006 Write service tests for getServerTime in packages/frontend/src/services/__tests__/todoService.test.js
+- [X] T007 Create useCurrentTime custom hook with 60-second polling in packages/frontend/src/hooks/useCurrentTime.js
+- [X] T008 Write hook tests for useCurrentTime in packages/frontend/src/hooks/__tests__/useCurrentTime.test.js
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
@@ -53,12 +53,12 @@ This is a monorepo web application with:
 
 ### Implementation for User Story 1
 
-- [ ] T009 [P] [US1] Update TodoCard component to accept currentTime prop and calculate overdue status in packages/frontend/src/components/TodoCard.js
-- [ ] T010 [P] [US1] Add overdue visual indicator (icon + text + styling) to TodoCard in packages/frontend/src/components/TodoCard.js
-- [ ] T011 [P] [US1] Write TodoCard tests for overdue rendering in packages/frontend/src/components/__tests__/TodoCard.test.js
-- [ ] T012 [US1] Update TodoList component to pass currentTime to each TodoCard in packages/frontend/src/components/TodoList.js
-- [ ] T013 [US1] Update App component to use useCurrentTime hook and pass to TodoList in packages/frontend/src/App.js
-- [ ] T014 [P] [US1] Add overdue CSS styles for light and dark modes in packages/frontend/src/styles/theme.css
+- [X] T009 [P] [US1] Update TodoCard component to accept currentTime prop and calculate overdue status in packages/frontend/src/components/TodoCard.js
+- [X] T010 [P] [US1] Add overdue visual indicator (icon + text + styling) to TodoCard in packages/frontend/src/components/TodoCard.js
+- [X] T011 [P] [US1] Write TodoCard tests for overdue rendering in packages/frontend/src/components/__tests__/TodoCard.test.js
+- [X] T012 [US1] Update TodoList component to pass currentTime to each TodoCard in packages/frontend/src/components/TodoList.js
+- [X] T013 [US1] Update App component to use useCurrentTime hook and pass to TodoList in packages/frontend/src/App.js
+- [X] T014 [P] [US1] Add overdue CSS styles for light and dark modes in packages/frontend/src/styles/theme.css
 
 **Checkpoint**: User Story 1 complete - overdue todos are visually distinguishable with color, icon, and text
 
@@ -72,9 +72,9 @@ This is a monorepo web application with:
 
 ### Implementation for User Story 2
 
-- [ ] T015 [US2] Verify day-level date comparison in isDateInPast treats today as not overdue in packages/frontend/src/utils/__tests__/dateUtils.test.js
-- [ ] T016 [US2] Add edge case tests for midnight transitions and same-day due dates in packages/frontend/src/components/__tests__/TodoCard.test.js
-- [ ] T017 [US2] Verify polling mechanism detects midnight transitions in packages/frontend/src/hooks/__tests__/useCurrentTime.test.js
+- [X] T015 [US2] Verify day-level date comparison in isDateInPast treats today as not overdue in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [X] T016 [US2] Add edge case tests for midnight transitions and same-day due dates in packages/frontend/src/components/__tests__/TodoCard.test.js
+- [X] T017 [US2] Verify polling mechanism detects midnight transitions in packages/frontend/src/hooks/__tests__/useCurrentTime.test.js
 
 **Checkpoint**: User Story 2 complete - "due today" behavior is clear and consistent, automatic updates work at midnight
 
@@ -88,11 +88,11 @@ This is a monorepo web application with:
 
 ### Implementation for User Story 3
 
-- [ ] T018 [P] [US3] Add overdue count calculation logic to TodoList component in packages/frontend/src/components/TodoList.js
-- [ ] T019 [P] [US3] Create OverdueSummary component to display count in packages/frontend/src/components/OverdueSummary.js
-- [ ] T020 [US3] Conditionally render OverdueSummary only when count > 0 in packages/frontend/src/components/TodoList.js
-- [ ] T021 [P] [US3] Write tests for OverdueSummary component in packages/frontend/src/components/__tests__/OverdueSummary.test.js
-- [ ] T022 [P] [US3] Add CSS styles for overdue summary in packages/frontend/src/styles/theme.css
+- [X] T018 [P] [US3] Add overdue count calculation logic to TodoList component in packages/frontend/src/components/TodoList.js
+- [X] T019 [P] [US3] Create OverdueSummary component to display count in packages/frontend/src/components/OverdueSummary.js
+- [X] T020 [US3] Conditionally render OverdueSummary only when count > 0 in packages/frontend/src/components/TodoList.js
+- [X] T021 [P] [US3] Write tests for OverdueSummary component in packages/frontend/src/components/__tests__/OverdueSummary.test.js
+- [X] T022 [P] [US3] Add CSS styles for overdue summary in packages/frontend/src/styles/theme.css
 
 **Checkpoint**: User Story 3 complete - overdue count visible at top of list when overdue todos exist
 
@@ -102,12 +102,12 @@ This is a monorepo web application with:
 
 **Purpose**: Final improvements and validation
 
-- [ ] T023 Run full test suite and verify 80%+ coverage with npm test -- --coverage
-- [ ] T024 [P] Manual accessibility testing with keyboard navigation and screen reader
-- [ ] T025 [P] Test overdue indicators in both light and dark themes
-- [ ] T026 [P] Verify performance for 100 todos is under 200ms render time
-- [ ] T027 Test all quickstart.md scenarios manually
-- [ ] T028 [P] Update any documentation as needed
+- [X] T023 Run full test suite and verify 80%+ coverage with npm test -- --coverage
+- [X] T024 [P] Manual accessibility testing with keyboard navigation and screen reader
+- [X] T025 [P] Test overdue indicators in both light and dark themes
+- [X] T026 [P] Verify performance for 100 todos is under 200ms render time
+- [X] T027 Test all quickstart.md scenarios manually
+- [X] T028 [P] Update any documentation as needed
 
 ---
 

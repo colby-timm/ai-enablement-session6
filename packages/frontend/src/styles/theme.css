@@ -51,3 +51,55 @@
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
 }
+
+/* Overdue Todo Styles */
+.todo-card.overdue {
+  border-left: 4px solid var(--danger-color);
+  background-color: var(--danger-bg);
+}
+
+.overdue-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--danger-color);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.overdue-icon {
+  font-size: 1rem;
+}
+
+/* Overdue Summary */
+.overdue-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  background-color: var(--danger-bg);
+  border-left: 4px solid var(--danger-color);
+  border-radius: var(--radius-sm);
+  color: var(--danger-color);
+  font-weight: 600;
+}
+
+.overdue-summary-icon {
+  font-size: 1.25rem;
+}
+
+.overdue-summary-text {
+  font-size: 0.9375rem;
+}
+
+/* Light mode overdue colors */
+:root {
+  --danger-bg: #ffebee;
+}
+
+/* Dark mode overdue colors */
+[data-theme="dark"] {
+  --danger-bg: rgba(239, 83, 80, 0.15);
+}

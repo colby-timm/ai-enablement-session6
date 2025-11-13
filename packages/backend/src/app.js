@@ -183,6 +183,16 @@ app.delete('/api/todos/:id', (req, res) => {
   }
 });
 
+// Server time endpoint for overdue calculations
+app.get('/api/server-time', (req, res) => {
+  const now = new Date();
+  res.set('Cache-Control', 'no-store');
+  res.json({
+    serverTime: now.toISOString(),
+    timestamp: now.getTime()
+  });
+});
+
 // Backward compatibility: support old items endpoints
 app.get('/api/items', (req, res) => {
   try {

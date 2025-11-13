@@ -149,6 +149,24 @@ class TodoService {
       throw error;
     }
   }
+
+  /**
+   * Fetches current server time
+   * @returns {Promise<Date>} Current server time as Date object
+   */
+  static async getServerTime() {
+    try {
+      const response = await fetch(`${API_BASE_URL}/server-time`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch server time: ${response.statusText}`);
+      }
+      const data = await response.json();
+      return new Date(data.serverTime);
+    } catch (error) {
+      console.warn('Failed to fetch server time, using client time:', error);
+      return new Date();
+    }
+  }
 }
 
 export default TodoService;
